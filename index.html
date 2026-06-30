@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Commercialisation & Innovation Playbook — A Living Framework Repository</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0E1F1C;
+    --navy-mid: #16302B;
+    --navy-light: #1F4339;
+    --teal: #4FB8A6;
+    --teal-light: #7DD3C0;
+    --cream: #F6F8F6;
+    --slate: #4A5568;
+    --slate-light: #7A9690;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy);
+    border-bottom: 1px solid rgba(79,184,166,0.2);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-dot { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; display: inline-block; }
+
+  .header-right { display: flex; align-items: center; gap: 1.5rem; }
+
+  .notebook-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    border: 1px solid rgba(79,184,166,0.4);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .last-updated { font-size: 0.72rem; color: var(--slate-light); letter-spacing: 0.02em; }
+
+  .hero { padding: 5rem 2rem 3.5rem; max-width: 900px; margin: 0 auto; text-align: center; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 em { font-style: normal; color: var(--teal); }
+
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(246,248,246,0.65);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--teal);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--slate-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .context-banner {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(79,184,166,0.07);
+    border: 1px solid rgba(79,184,166,0.25);
+    border-radius: 4px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(246,248,246,0.75);
+    text-align: center;
+  }
+
+  .context-banner strong { color: var(--teal-light); }
+
+  .cat-nav {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cat-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 8px 18px;
+    border: 1px solid rgba(246,248,246,0.15);
+    border-radius: 3px;
+    background: transparent;
+    color: rgba(246,248,246,0.55);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cat-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  .cat-btn.active { background: var(--teal); border-color: var(--teal); color: var(--navy); }
+
+  .search-wrap { margin-left: auto; position: relative; }
+
+  .search-input {
+    background: rgba(246,248,246,0.06);
+    border: 1px solid rgba(246,248,246,0.12);
+    border-radius: 3px;
+    padding: 8px 14px 8px 36px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    width: 220px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--slate-light); }
+  .search-input:focus { border-color: var(--teal); }
+
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--slate-light); font-size: 0.85rem; }
+
+  .main { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 5rem; }
+
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; margin-top: 2.5rem; }
+
+  .section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--cream); }
+
+  .section-line { flex: 1; height: 1px; background: rgba(246,248,246,0.08); }
+
+  .cat-pathway .section-label { background: rgba(79,184,166,0.15); color: var(--teal); }
+  .cat-readiness .section-label { background: rgba(45,106,79,0.2); color: #52B788; }
+  .cat-economics .section-label { background: rgba(85,60,123,0.2); color: #A78BDA; }
+  .cat-gtm .section-label { background: rgba(156,107,44,0.2); color: #E09F3E; }
+  .cat-ip .section-label { background: rgba(139,90,58,0.2); color: #D4925C; }
+
+  .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: rgba(246,248,246,0.06);
+    border: 1px solid rgba(246,248,246,0.06);
+    margin-bottom: 0.5rem;
+  }
+
+  .fw-card { background: var(--navy-mid); padding: 1.5rem; cursor: pointer; transition: background 0.2s; position: relative; overflow: hidden; }
+
+  .fw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; opacity: 0; transition: opacity 0.2s; }
+
+  .fw-card:hover { background: var(--navy-light); }
+  .fw-card:hover::before { opacity: 1; }
+  .fw-card.open { background: var(--navy-light); }
+  .fw-card:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
+  .fw-card.open::before { opacity: 1; }
+
+  .cat-pathway .fw-card::before { background: var(--teal); }
+  .cat-readiness .fw-card::before { background: #52B788; }
+  .cat-economics .fw-card::before { background: #A78BDA; }
+  .cat-gtm .fw-card::before { background: #E09F3E; }
+  .cat-ip .fw-card::before { background: #D4925C; }
+
+  .fw-type { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; opacity: 0.65; }
+  .start-badge { font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--teal); padding: 2px 8px; border-radius: 2px; display: inline-block; margin-bottom: 0.6rem; margin-right: 0.5rem; }
+
+  .fw-name { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--cream); margin-bottom: 0.4rem; line-height: 1.3; }
+
+  .fw-short { font-size: 0.8rem; color: var(--slate-light); line-height: 1.5; margin-bottom: 1rem; }
+
+  .fw-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  .tag { font-size: 0.67rem; font-weight: 500; padding: 2px 8px; border-radius: 2px; background: rgba(246,248,246,0.07); color: rgba(246,248,246,0.5); letter-spacing: 0.03em; }
+
+  .fw-arrow { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.9rem; color: var(--slate-light); transition: transform 0.2s, color 0.2s; }
+
+  .fw-card.open .fw-arrow { transform: rotate(90deg); color: var(--teal); }
+
+  .fw-detail { display: none; background: var(--navy-light); border-top: 1px solid rgba(246,248,246,0.08); padding: 2rem; grid-column: 1 / -1; }
+
+  .fw-detail.open { display: block; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+
+  @media (max-width: 700px) {
+    .detail-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .fw-grid { grid-template-columns: 1fr; }
+  }
+
+  .detail-block h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-block p, .detail-block li { font-size: 0.88rem; line-height: 1.65; color: rgba(246,248,246,0.75); }
+
+  .detail-block ul, .detail-block ol { padding-left: 1.25rem; }
+
+  .detail-block li { margin-bottom: 0.3rem; }
+
+  .steps-list { counter-reset: steps; list-style: none; padding: 0; }
+
+  .steps-list li { counter-increment: steps; display: flex; gap: 0.75rem; margin-bottom: 0.6rem; align-items: flex-start; }
+
+  .steps-list li::before {
+    content: counter(steps);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--teal);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Ladder/scale visual for TRL/CRL */
+  .scale-ladder { display: flex; flex-direction: column; gap: 4px; margin-top: 0.5rem; }
+  .scale-rung {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: rgba(246,248,246,0.04);
+  }
+  .scale-rung-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--teal);
+    width: 22px;
+    flex-shrink: 0;
+  }
+
+  .practice-section { margin-top: 1.5rem; border-top: 1px solid rgba(246,248,246,0.08); padding-top: 1.5rem; }
+
+  .practice-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+
+  .practice-badge {
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(79,184,166,0.15);
+    color: var(--teal);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .practice-header h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--cream); }
+
+  .practice-scenario {
+    background: rgba(246,248,246,0.04);
+    border: 1px solid rgba(246,248,246,0.1);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(246,248,246,0.8);
+    margin-bottom: 0.85rem;
+    font-style: italic;
+  }
+
+  .practice-input {
+    width: 100%;
+    background: rgba(246,248,246,0.05);
+    border: 1px solid rgba(246,248,246,0.12);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 90px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .practice-input:focus { border-color: var(--teal); }
+  .practice-input::placeholder { color: var(--slate-light); }
+
+  .practice-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 9px 22px;
+    background: var(--teal);
+    color: var(--navy);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+
+  .practice-btn:hover { background: var(--teal-light); }
+  .practice-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  .ai-response {
+    margin-top: 1rem;
+    background: rgba(79,184,166,0.06);
+    border: 1px solid rgba(79,184,166,0.2);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(246,248,246,0.85);
+    display: none;
+  }
+
+  .ai-response.visible { display: block; }
+
+  .ai-response-label {
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-divider { height: 1px; background: rgba(246,248,246,0.05); margin: 3rem 0 0; }
+
+  footer {
+    border-top: 1px solid rgba(246,248,246,0.07);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--slate-light);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  footer a { color: var(--teal); text-decoration: none; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="logo-dot"></span>Health Commercialisation & Innovation</div>
+  <div class="header-right">
+    <span class="notebook-tag">Living Notebook</span>
+    <span class="last-updated">Last updated June 2026</span>
+  </div>
+</header>
+
+<div class="hero">
+  <p class="hero-eyebrow">A Framework Repository for Health Innovation & Commercialisation</p>
+  <h1>From bench to bedside<br>to <em>business model</em></h1>
+  <p>The frameworks that govern how a health innovation actually reaches patients — readiness scales, regulatory pathways, reimbursement mechanics, and go-to-market strategy. Each framework includes a practice scenario with AI feedback.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">13</span><span class="stat-label">Frameworks</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Categories</span></div>
+    <div class="stat"><span class="stat-num">AI</span><span class="stat-label">Practice Mode</span></div>
+  </div>
+</div>
+
+<div class="context-banner">
+  Frameworks are written with an <strong>Australian health system lens</strong> (TGA, MBS, PBS, PBAC, MSAC) as the primary worked example, with the underlying logic generalisable to other regulated health markets (FDA, NICE, EMA).
+</div>
+
+<div class="context-banner" style="margin-top: 1rem; text-align: left;">
+  <strong style="color: var(--teal-light);">New to this notebook?</strong> Start with <strong>Technology Readiness Levels</strong> and <strong>Clinical Readiness Levels</strong> (Innovation Readiness section) — almost every other framework here assumes you can already place an innovation on these two scales. From there, <strong>The Valley of Death</strong> explains why funding gets hard right after, and <strong>TGA Regulatory Pathway</strong> is the natural next stop before touching reimbursement or commercial strategy.
+</div>
+
+<div class="cat-nav">
+  <button class="cat-btn active" onclick="filterCat('all', this)">All Frameworks</button>
+  <button class="cat-btn" onclick="filterCat('readiness', this)">Innovation Readiness</button>
+  <button class="cat-btn" onclick="filterCat('pathway', this)">Regulatory & Reimbursement</button>
+  <button class="cat-btn" onclick="filterCat('economics', this)">Health Economics</button>
+  <button class="cat-btn" onclick="filterCat('gtm', this)">Go-to-Market</button>
+  <button class="cat-btn" onclick="filterCat('ip', this)">IP & Tech Transfer</button>
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" class="search-input" placeholder="Search frameworks..." oninput="searchFrameworks(this.value)">
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ═══════════════════════════════
+       SECTION 1: INNOVATION READINESS
+  ═══════════════════════════════ -->
+  <div class="section-header cat-readiness" data-cat="readiness">
+    <span class="section-label">Readiness</span>
+    <span class="section-title">Innovation Readiness Frameworks</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fw-grid cat-readiness" data-cat="readiness">
+
+    <!-- TRL -->
+    <div class="fw-card" onclick="toggleCard(this, 'trl-detail')" data-name="Technology Readiness Levels" data-tags="TRL maturity scale research development">
+      <span class="fw-arrow">›</span>
+      <span class="start-badge">Start Here</span>
+      <div class="fw-type">Maturity Scale</div>
+      <div class="fw-name">Technology Readiness Levels (TRL)</div>
+      <div class="fw-short">A 9-point scale from raw concept to proven product. The universal language for "how far along is this, really?"</div>
+      <div class="fw-tags"><span class="tag">NASA Origin</span><span class="tag">Maturity</span><span class="tag">Funding Gates</span></div>
+    </div>
+    <div class="fw-detail" id="trl-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The 9-level scale</h4>
+          <div class="scale-ladder">
+            <div class="scale-rung"><span class="scale-rung-num">9</span>System proven in operational environment</div>
+            <div class="scale-rung"><span class="scale-rung-num">8</span>System complete and qualified</div>
+            <div class="scale-rung"><span class="scale-rung-num">7</span>System prototype in operational environment</div>
+            <div class="scale-rung"><span class="scale-rung-num">6</span>Technology demonstrated in relevant environment</div>
+            <div class="scale-rung"><span class="scale-rung-num">5</span>Technology validated in relevant environment</div>
+            <div class="scale-rung"><span class="scale-rung-num">4</span>Technology validated in lab</div>
+            <div class="scale-rung"><span class="scale-rung-num">3</span>Experimental proof of concept</div>
+            <div class="scale-rung"><span class="scale-rung-num">2</span>Technology concept formulated</div>
+            <div class="scale-rung"><span class="scale-rung-num">1</span>Basic principles observed</div>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h4>Why it matters commercially</h4>
+          <p>Investors, grant bodies, and corporate partners use TRL as a shorthand risk indicator. TRL 1–3 is academic/grant-funded territory. TRL 4–6 is the riskiest and hardest-to-fund "Valley of Death" zone. TRL 7–9 is where commercial investors re-engage because execution risk (not technical risk) dominates.</p>
+        </div>
+        <div class="detail-block">
+          <h4>How to use it in practice</h4>
+          <ol class="steps-list">
+            <li>Be brutally honest about current TRL — overclaiming kills credibility with investors and HTA bodies</li>
+            <li>Identify exactly what evidence is needed to move up one level</li>
+            <li>Match funding source to TRL: grants for TRL 1–4, venture/strategic for TRL 5+</li>
+            <li>For health tech, layer TRL against Clinical Readiness Level (CRL) — they are not the same axis</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Common pitfalls</h4>
+          <ul>
+            <li>Treating TRL as linear and irreversible — failed validation can knock a technology back a level</li>
+            <li>Confusing engineering readiness (TRL) with clinical or regulatory readiness (CRL) — a device can be TRL 8 but CRL 3</li>
+            <li>Assuming TRL 9 means commercially viable — it only means technically proven, not adopted or funded</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A university research team has built a wearable sensor that detects early signs of sepsis, validated in a controlled lab setting with simulated patient data, but never tested on real patients or in a hospital ward. Assign a TRL, justify your reasoning, and identify the single piece of evidence needed to progress to the next level.
+        </div>
+        <textarea class="practice-input" placeholder="Current TRL: [number]&#10;Justification: This sits at TRL [X] because the technology has been validated in [environment], but has not yet been tested in [relevant environment]...&#10;&#10;Evidence needed to progress: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'trl')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-trl"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- CRL -->
+    <div class="fw-card" onclick="toggleCard(this, 'crl-detail')" data-name="Clinical Readiness Levels" data-tags="CRL clinical validation regulatory health-specific maturity">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Maturity Scale</div>
+      <div class="fw-name">Clinical Readiness Levels (CRL)</div>
+      <div class="fw-short">TRL's health-specific cousin — tracking clinical validation, regulatory approval, and post-market surveillance separately from engineering maturity.</div>
+      <div class="fw-tags"><span class="tag">MedTech</span><span class="tag">Clinical Trials</span><span class="tag">Health-Specific</span></div>
+    </div>
+    <div class="fw-detail" id="crl-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The CRL stages</h4>
+          <div class="scale-ladder">
+            <div class="scale-rung"><span class="scale-rung-num">9</span>Post-market surveillance & continual safety monitoring</div>
+            <div class="scale-rung"><span class="scale-rung-num">8</span>Regulatory approval / market authorisation achieved</div>
+            <div class="scale-rung"><span class="scale-rung-num">7</span>Pivotal/confirmatory clinical trial complete</div>
+            <div class="scale-rung"><span class="scale-rung-num">6</span>Pivotal trial design validated (Phase II/III equivalent)</div>
+            <div class="scale-rung"><span class="scale-rung-num">5</span>Early feasibility/pilot clinical study complete</div>
+            <div class="scale-rung"><span class="scale-rung-num">4</span>First-in-human / proof-of-concept study</div>
+            <div class="scale-rung"><span class="scale-rung-num">3</span>Pre-clinical safety and efficacy testing (animal/in-vitro)</div>
+            <div class="scale-rung"><span class="scale-rung-num">2</span>Clinical concept and regulatory strategy defined</div>
+            <div class="scale-rung"><span class="scale-rung-num">1</span>Clinical need identified</div>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h4>Why two scales, not one</h4>
+          <p>A device can be engineering-mature (TRL 9 — works flawlessly as a machine) but clinically immature (CRL 3 — never been tested for safety or efficacy in patients). Investors and HTA bodies care about CRL far more than TRL once a product nears market.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Application in Australia</h4>
+          <ol class="steps-list">
+            <li>CRL 1–4: typically funded by MRFF, NHMRC grants, university tech transfer offices</li>
+            <li>CRL 5–6: requires Human Research Ethics Committee (HREC) approval, often via National Mutual Acceptance (NMA) for multi-site trials</li>
+            <li>CRL 7–8: TGA submission and ARTG listing pathway begins</li>
+            <li>CRL 8–9: parallel/post-ARTG, MSAC or PBAC submission for MBS/PBS funding</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>The investor lens</h4>
+          <ul>
+            <li>Health-focused VCs typically won't invest meaningfully before CRL 4–5 (some clinical signal exists)</li>
+            <li>The biggest valuation step-change occurs at CRL 7→8 (regulatory approval de-risks dramatically)</li>
+            <li>CRL 8 ≠ revenue — reimbursement (MBS/PBS listing) is a separate, often slower gate</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A digital therapeutics startup has completed a 40-patient pilot study showing promising results for an app-based anxiety treatment, but has not yet run a randomised controlled trial. Assign a CRL, identify what's needed to reach CRL 7, and explain why an investor might still hesitate even if the pilot data looks strong.
+        </div>
+        <textarea class="practice-input" placeholder="Current CRL: [number] because...&#10;&#10;To reach CRL 7, this would require: ...&#10;&#10;Why an investor might still hesitate: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'crl')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-crl"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Valley of Death -->
+    <div class="fw-card" onclick="toggleCard(this, 'vod-detail')" data-name="The Valley of Death" data-tags="funding gap research commercialisation translation risk">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Funding Strategy</div>
+      <div class="fw-name">The Valley of Death</div>
+      <div class="fw-short">Why most health innovations die between grant funding and commercial investment — and how to plan around it.</div>
+      <div class="fw-tags"><span class="tag">Funding Gap</span><span class="tag">Translation</span><span class="tag">Risk</span></div>
+    </div>
+    <div class="fw-detail" id="vod-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>What it is</h4>
+          <p>The Valley of Death describes the funding gap between early-stage research (typically grant-funded, TRL 1–4 / CRL 1–4) and late-stage commercialisation (typically venture or strategic-funded, TRL 7+ / CRL 6+). In the middle, neither grant bodies nor commercial investors want to fund the work — it's too applied for academic grants, too risky for venture capital.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Why this gap exists</h4>
+          <ul>
+            <li>Grant funders (NHMRC, MRFF) fund discovery and early proof-of-concept, not product development</li>
+            <li>Venture investors want de-risked clinical and regulatory signal before committing capital</li>
+            <li>The work in between — prototyping, pilot trials, regulatory strategy — is expensive and high-risk with no clear funder mandate</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Bridging strategies</h4>
+          <ol class="steps-list">
+            <li>Target translational funding specifically designed for this gap (MRFF Translational Research Grants, BioMedTech Horizons, Frontier Health and Medical Research)</li>
+            <li>Seek non-dilutive grants from MTPConnect or state government innovation funds (e.g. WA's Innovation Booster)</li>
+            <li>Pursue strategic corporate partnerships early — pharma/medtech co-development de-risks both technical and commercial uncertainty simultaneously</li>
+            <li>Build a syndicate of angel/pre-seed investors comfortable with binary clinical risk</li>
+            <li>Sequence milestones to create natural "proof points" that justify staged funding asks</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Strategic implication for founders</h4>
+          <ul>
+            <li>Map your funding plan to specific TRL/CRL milestones before you need the money</li>
+            <li>The Valley of Death is a planning problem, not just bad luck — most failures here were predictable</li>
+            <li>Consider de-risking sequence: which is cheaper to prove first, clinical signal or regulatory pathway clarity?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A WA-based university spin-out has just completed an MRFF-funded proof-of-concept study for a novel wound care dressing (CRL 4). They need approximately $2M to fund a pilot clinical trial and TGA regulatory strategy before they can attract Series A investment. Map out a Valley of Death bridging strategy — identify 3 specific funding sources or mechanisms they should pursue and sequence them.
+        </div>
+        <textarea class="practice-input" placeholder="Funding source 1: [name] — Why suitable: ... — Typical amount: ...&#10;Funding source 2: ...&#10;Funding source 3: ...&#10;&#10;Recommended sequence and rationale: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'vod')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-vod"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Stage-Gate -->
+    <div class="fw-card" onclick="toggleCard(this, 'stagegate-detail')" data-name="Stage-Gate Process" data-tags="commercialisation funnel decision gates new product development">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Commercialisation Process</div>
+      <div class="fw-name">Stage-Gate Process</div>
+      <div class="fw-short">Structured go/no-go decisions at each phase of development — preventing good money chasing bad science.</div>
+      <div class="fw-tags"><span class="tag">Cooper Model</span><span class="tag">Decision Gates</span><span class="tag">NPD</span></div>
+    </div>
+    <div class="fw-detail" id="stagegate-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The standard stages</h4>
+          <ul>
+            <li><strong>Stage 0 — Discovery:</strong> Idea generation, unmet need identification</li>
+            <li><strong>Stage 1 — Scoping:</strong> Preliminary market and technical assessment</li>
+            <li><strong>Stage 2 — Business Case:</strong> Detailed investigation, regulatory strategy, IP position</li>
+            <li><strong>Stage 3 — Development:</strong> Product/prototype development, pre-clinical work</li>
+            <li><strong>Stage 4 — Validation:</strong> Clinical trials, regulatory submission</li>
+            <li><strong>Stage 5 — Launch:</strong> Market entry, reimbursement, commercial scale-up</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The gates</h4>
+          <p>Between each stage sits a formal "gate" — a structured go/kill/hold/recycle decision made against pre-defined criteria (technical feasibility, clinical evidence strength, market size, regulatory risk, financial viability). Gates exist specifically to kill bad projects early, before they consume more capital.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Why health needs strict gates</h4>
+          <ol class="steps-list">
+            <li>Health development is capital-intensive and slow — sunk cost bias is dangerous</li>
+            <li>Each gate should have explicit kill criteria agreed before the stage begins, not after results are seen</li>
+            <li>Gatekeepers should include people with no emotional investment in the project's survival</li>
+            <li>"Recycle" (send back for more evidence) is a legitimate outcome, not just go/kill</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Common organisational failure</h4>
+          <ul>
+            <li>Gates become rubber stamps — everything proceeds regardless of evidence</li>
+            <li>No one owns the kill decision — diffused accountability protects bad projects</li>
+            <li>Gate criteria aren't quantified, so "feels promising" substitutes for evidence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> You're advising a MedTech accelerator portfolio company moving from Stage 2 (Business Case) to Stage 3 (Development) for a new diagnostic device. Design the Gate 2→3 criteria — list 4 specific, measurable go/kill criteria across technical, clinical, market, and financial dimensions.
+        </div>
+        <textarea class="practice-input" placeholder="Technical criterion: [specific, measurable threshold]&#10;Clinical criterion: ...&#10;Market criterion: ...&#10;Financial criterion: ...&#10;&#10;If any criterion fails, the recommended action is: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'stagegate')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-stagegate"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /fw-grid cat-readiness -->
+
+
+  <!-- ═══════════════════════════════
+       SECTION 2: REGULATORY & REIMBURSEMENT
+  ═══════════════════════════════ -->
+  <div class="section-header cat-pathway" data-cat="pathway">
+    <span class="section-label">Pathway</span>
+    <span class="section-title">Regulatory & Reimbursement Pathways</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fw-grid cat-pathway" data-cat="pathway">
+
+    <!-- TGA Pathway -->
+    <div class="fw-card" onclick="toggleCard(this, 'tga-detail')" data-name="TGA Regulatory Pathway" data-tags="TGA ARTG registration approval Australia regulatory">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Australian Regulation</div>
+      <div class="fw-name">TGA Regulatory Pathway</div>
+      <div class="fw-short">Before anything can be sold in Australia, it must clear the Therapeutic Goods Administration. Here's the route.</div>
+      <div class="fw-tags"><span class="tag">TGA</span><span class="tag">ARTG</span><span class="tag">Class I-III</span></div>
+    </div>
+    <div class="fw-detail" id="tga-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>What the TGA does</h4>
+          <p>The Therapeutic Goods Administration regulates the safety, quality, and efficacy of therapeutic goods (medicines, medical devices, biologicals) supplied in Australia. Market authorisation means listing on the Australian Register of Therapeutic Goods (ARTG) — a separate process to reimbursement.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Device classification (risk-based)</h4>
+          <ul>
+            <li><strong>Class I:</strong> Low risk (e.g. bandages, simple instruments) — self-certification often sufficient</li>
+            <li><strong>Class IIa/IIb:</strong> Medium risk (e.g. infusion pumps, hearing aids) — requires conformity assessment</li>
+            <li><strong>Class III:</strong> High risk (e.g. implantable devices) — requires full clinical evidence and TGA conformity assessment</li>
+            <li>Classification closely mirrors the EU MDR system — a CE mark often supports the Australian pathway via the Overseas Comparable Assessment (OCA) route</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The core steps to ARTG listing</h4>
+          <ol class="steps-list">
+            <li>Determine device classification using the TGA Medical Device Classification Tool</li>
+            <li>Obtain manufacturer conformity certification (TGA or recognised overseas regulator, e.g. EU CE mark)</li>
+            <li>Submit ARTG application with the manufacturer's certificate (for Class II+)</li>
+            <li>Comply with Essential Principles (safety, performance, labelling, UDI requirements)</li>
+            <li>Post-market: ongoing pharmacovigilance/technovigilance reporting obligations</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Practical tips</h4>
+          <ul>
+            <li>A pre-submission meeting with TGA is available and strongly recommended for novel technologies</li>
+            <li>Leveraging an existing CE mark or FDA clearance significantly accelerates the Australian pathway</li>
+            <li>TGA approval (ARTG listing) does <strong>not</strong> mean the product is funded — that's a separate MSAC/PBAC/MBS/PBS process</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A startup has developed an AI-powered software algorithm (Software as a Medical Device, SaMD) that flags potential melanomas from smartphone photos for GP referral decisions, not diagnosis. Determine the likely TGA risk classification, outline the key steps to ARTG listing, and identify one strategic decision that could accelerate their pathway.
+        </div>
+        <textarea class="practice-input" placeholder="Likely classification: [Class I/IIa/IIb/III] because... (consider: is this diagnostic or decision-support? what's the clinical risk if wrong?)&#10;&#10;Key steps to ARTG listing:&#10;1. ...&#10;2. ...&#10;3. ...&#10;&#10;Strategic acceleration option: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'tga')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-tga"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- HTA/PBAC/MSAC -->
+    <div class="fw-card" onclick="toggleCard(this, 'hta-detail')" data-name="HTA: PBAC & MSAC Pathways" data-tags="PBAC MSAC HTA reimbursement PBS MBS health technology assessment">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Australian Reimbursement</div>
+      <div class="fw-name">Health Technology Assessment: PBAC & MSAC</div>
+      <div class="fw-short">Regulatory approval gets you to market. HTA gets you paid. The two committees that decide if government will fund your innovation.</div>
+      <div class="fw-tags"><span class="tag">PBAC</span><span class="tag">MSAC</span><span class="tag">Cost-Effectiveness</span></div>
+    </div>
+    <div class="fw-detail" id="hta-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The two committees</h4>
+          <ul>
+            <li><strong>PBAC (Pharmaceutical Benefits Advisory Committee):</strong> Assesses medicines for PBS (Pharmaceutical Benefits Scheme) listing. Cannot recommend listing unless satisfied the medicine represents value for money vs existing therapies.</li>
+            <li><strong>MSAC (Medical Services Advisory Committee):</strong> The equivalent body for medical devices and diagnostic services, assessing clinical and cost-effectiveness for MBS (Medicare Benefits Schedule) funding.</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The core evaluation logic</h4>
+          <p>Both committees use Incremental Cost-Effectiveness Ratio (ICER) = Change in Cost ÷ Change in QALY (quality-adjusted life years), benchmarked against standard of care or "doing nothing." A lower ICER means more health gain per dollar — more likely to be funded.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Practical pathway</h4>
+          <ol class="steps-list">
+            <li>PBAC meets 3 times per year (March, July, November) — plan submissions around this cycle</li>
+            <li>Standard process takes minimum ~6 months, longer with price negotiation</li>
+            <li>TGA-PBAC parallel process available for Category 1/2 submissions — runs regulatory and reimbursement assessment simultaneously, saving significant time</li>
+            <li>A positive recommendation triggers price negotiation between sponsor and Department of Health for the Approved Ex-Manufacturer Price (AEMP)</li>
+            <li>Rejections can be resubmitted or independently reviewed</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>For codependent technologies (drug + diagnostic)</h4>
+          <ul>
+            <li>Where a drug requires a companion diagnostic, submissions can be integrated (joint MSAC + PBAC) or parallel (streamlined)</li>
+            <li>Integrated submissions take longer but ensure alignment; parallel is faster but riskier if the two assessments diverge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A biotech company has TGA-approved a new diabetes medication that costs $3,000/year more than the current standard of care, but clinical trials show it extends quality-adjusted life by 0.15 QALYs per patient on average. Calculate the ICER, and explain in plain terms whether this is likely to be viewed favourably by PBAC, and what additional evidence might strengthen the submission.
+        </div>
+        <textarea class="practice-input" placeholder="ICER calculation: Change in Cost ÷ Change in QALY = $[X] ÷ [Y] QALYs = $[Z] per QALY&#10;&#10;Is this likely favourable? My assessment: ... (note: Australia doesn't publish an official ICER threshold, but submissions above ~$50,000-$75,000/QALY typically face more scrutiny)&#10;&#10;Additional evidence that would strengthen the case: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'hta')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-hta"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Reimbursement Pathway Mapping -->
+    <div class="fw-card" onclick="toggleCard(this, 'reimburse-detail')" data-name="Reimbursement Pathway Mapping" data-tags="reimbursement funding pathway prostheses list private health insurance">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Funding Strategy</div>
+      <div class="fw-name">Reimbursement Pathway Mapping</div>
+      <div class="fw-short">There's no single way to get paid in Australian health. Map the right pathway before you build the product.</div>
+      <div class="fw-tags"><span class="tag">MBS</span><span class="tag">PBS</span><span class="tag">Prostheses List</span></div>
+    </div>
+    <div class="fw-detail" id="reimburse-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The major funding pathways in Australia</h4>
+          <ul>
+            <li><strong>PBS:</strong> Subsidised medicines — via PBAC recommendation</li>
+            <li><strong>MBS:</strong> Subsidised medical services/procedures — via MSAC recommendation</li>
+            <li><strong>Prescribed List (formerly Prostheses List):</strong> Mandatory minimum benefit for implants/prostheses that private health insurers must cover</li>
+            <li><strong>State health budgets:</strong> Hospital-based technologies often procured directly by state health systems, bypassing Commonwealth HTA</li>
+            <li><strong>Private health insurance (beyond Prescribed List):</strong> Negotiated separately with individual funds</li>
+            <li><strong>Out-of-pocket / direct-to-consumer:</strong> No reimbursement pathway — relies on consumer willingness to pay</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The strategic question every founder must answer early</h4>
+          <p>"Who is actually going to pay for this, and through which mechanism?" Many promising health technologies fail not on clinical grounds but because no clear reimbursement pathway exists — they fall between Commonwealth, state, and private funding structures.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Mapping approach</h4>
+          <ol class="steps-list">
+            <li>Identify the most analogous existing item already funded (comparator) — this anchors your pricing and evidence strategy</li>
+            <li>Determine whether your technology is a medicine, device, service, or digital health product — each has a different committee</li>
+            <li>Map state vs Commonwealth funding boundaries — hospital-based vs community-based technologies are funded very differently</li>
+            <li>Consider hybrid strategies: direct-to-consumer revenue while pursuing reimbursement in parallel</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Digital health complication</h4>
+          <ul>
+            <li>Digital therapeutics and AI software often don't fit neatly into existing MBS item descriptors</li>
+            <li>New MBS items require MSAC application — a slow, evidence-intensive process</li>
+            <li>Many digital health companies pursue B2B2C models (selling to hospitals/insurers directly) to bypass individual reimbursement uncertainty</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A startup has built a remote patient monitoring platform for post-surgical cardiac patients, designed to reduce hospital readmissions. Map out the possible reimbursement pathways available to them in Australia, identify the most likely primary pathway, and explain why a hybrid funding strategy might be necessary in the short term.
+        </div>
+        <textarea class="practice-input" placeholder="Possible pathways:&#10;1. [e.g. New MBS item via MSAC] — feasibility: ...&#10;2. [e.g. State health hospital procurement] — feasibility: ...&#10;3. [e.g. Private health insurer chronic disease program] — feasibility: ...&#10;&#10;Most likely primary pathway: ... because...&#10;&#10;Why a hybrid strategy makes sense short-term: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'reimburse')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-reimburse"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /fw-grid cat-pathway -->
+
+
+  <!-- ═══════════════════════════════
+       SECTION 3: HEALTH ECONOMICS
+  ═══════════════════════════════ -->
+  <div class="section-header cat-economics" data-cat="economics">
+    <span class="section-label">Economics</span>
+    <span class="section-title">Health Economics & Evidence</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fw-grid cat-economics" data-cat="economics">
+
+    <!-- HEOR -->
+    <div class="fw-card" onclick="toggleCard(this, 'heor-detail')" data-name="HEOR" data-tags="health economics outcomes research QALY cost-effectiveness evidence">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Evidence Generation</div>
+      <div class="fw-name">Health Economics & Outcomes Research (HEOR)</div>
+      <div class="fw-short">The discipline of proving your innovation is worth what it costs — the evidence engine behind every HTA submission.</div>
+      <div class="fw-tags"><span class="tag">QALY</span><span class="tag">Burden of Disease</span><span class="tag">Modelling</span></div>
+    </div>
+    <div class="fw-detail" id="heor-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>Core HEOR concepts</h4>
+          <ul>
+            <li><strong>QALY (Quality-Adjusted Life Year):</strong> One year of life at perfect health = 1 QALY. Combines length and quality of life into a single comparable metric.</li>
+            <li><strong>ICER:</strong> Incremental Cost-Effectiveness Ratio — extra cost per extra QALY gained vs the comparator</li>
+            <li><strong>Burden of Disease:</strong> The total health impact of a condition, often measured in Disability-Adjusted Life Years (DALYs)</li>
+            <li><strong>Budget Impact Analysis:</strong> The total cost to the health system of funding the new technology at scale — distinct from cost-effectiveness</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The three pillars of an HEOR case</h4>
+          <ol class="steps-list">
+            <li><strong>Clinical evidence:</strong> Does it work? (efficacy, safety — usually from trials)</li>
+            <li><strong>Economic evidence:</strong> Is it worth the cost? (cost-effectiveness modelling, ICER)</li>
+            <li><strong>Real-world evidence:</strong> Does it work outside controlled trial conditions? (registries, observational data)</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Building the economic model</h4>
+          <ul>
+            <li>Choose your comparator carefully — usually current standard of care, sometimes "no intervention"</li>
+            <li>Decision-tree models for short-term outcomes; Markov models for chronic, long-term conditions</li>
+            <li>Sensitivity analysis is mandatory — show how the ICER changes under different assumptions</li>
+            <li>Perspective matters: health system perspective (most common in Australia) vs societal perspective (includes productivity, carer burden)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Practical advice for founders</h4>
+          <ul>
+            <li>Engage a health economist early — HEOR strategy should shape your clinical trial design, not follow it</li>
+            <li>Budget impact concerns can kill a clinically excellent technology — a $200/QALY ICER means nothing if total system cost is unaffordable</li>
+            <li>Real-world evidence registries can be planned from day one of commercial launch to support future re-submissions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A digital mental health platform wants to build the HEOR case for PBS/MBS funding. The platform reduces GP visits for mild-moderate anxiety by an estimated 30%, with a subscription cost of $40/month. Outline the three pillars of evidence you'd need, propose a comparator, and identify the biggest challenge in modelling QALY gains for a mental health intervention specifically.
+        </div>
+        <textarea class="practice-input" placeholder="Clinical evidence needed: ...&#10;Economic evidence needed: ...&#10;Real-world evidence needed: ...&#10;&#10;Proposed comparator: [e.g. standard GP-managed care] because...&#10;&#10;Biggest QALY modelling challenge for mental health: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'heor')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-heor"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Evidence Hierarchy -->
+    <div class="fw-card" onclick="toggleCard(this, 'evidence-detail')" data-name="The Evidence Hierarchy" data-tags="evidence levels RCT clinical trials study design hierarchy">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Evidence Strategy</div>
+      <div class="fw-name">The Evidence Hierarchy</div>
+      <div class="fw-short">Not all evidence is equal. Knowing what level of proof your claim requires saves years and millions.</div>
+      <div class="fw-tags"><span class="tag">RCT</span><span class="tag">Study Design</span><span class="tag">NHMRC</span></div>
+    </div>
+    <div class="fw-detail" id="evidence-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The hierarchy (strongest to weakest)</h4>
+          <ul>
+            <li><strong>Systematic review / meta-analysis</strong> of randomised controlled trials</li>
+            <li><strong>Randomised controlled trial (RCT)</strong> — gold standard for causal claims</li>
+            <li><strong>Cohort study</strong> — observes groups over time, no randomisation</li>
+            <li><strong>Case-control study</strong> — compares those with/without the outcome retrospectively</li>
+            <li><strong>Case series / case reports</strong> — descriptive, no comparison group</li>
+            <li><strong>Expert opinion</strong> — lowest level, useful for hypothesis generation only</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Matching evidence to claim</h4>
+          <p>The level of evidence required scales with the claim's risk and reimbursement stakes. A wellness app claiming "may support relaxation" needs minimal evidence. A device claiming "reduces hospital readmission by 25%" for MBS funding needs RCT-level evidence at minimum.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Strategic evidence planning</h4>
+          <ol class="steps-list">
+            <li>Identify your core commercial claim before designing any study</li>
+            <li>Work backwards: what evidence level does that claim require for your target reimbursement pathway?</li>
+            <li>Design the minimum viable study that generates that evidence level — don't over- or under-engineer</li>
+            <li>Consider adaptive trial designs to reduce cost and timeline where regulators allow</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Real-world evidence's growing role</h4>
+          <ul>
+            <li>TGA and HTA bodies increasingly accept real-world evidence (RWE) to supplement RCT data, especially post-market</li>
+            <li>RWE cannot usually replace RCT evidence for initial reimbursement decisions, but strengthens re-submissions and expanded indications</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A health-tech startup is deciding their evidence strategy for an AI triage tool used in emergency departments. They're choosing between (A) a retrospective cohort study using existing hospital data, which is fast and cheap, or (B) a prospective RCT, which is slow and expensive but more rigorous. Advise them — considering their target use case (clinical decision support, not autonomous diagnosis) and likely regulatory/reimbursement pathway.
+        </div>
+        <textarea class="practice-input" placeholder="My recommendation: [A/B/both sequentially] because...&#10;&#10;Given the claim is decision support (not autonomous diagnosis), the evidence bar is likely: [higher/lower] because...&#10;&#10;Suggested evidence sequencing: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'evidence')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-evidence"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /fw-grid cat-economics -->
+
+
+  <!-- ═══════════════════════════════
+       SECTION 4: GO-TO-MARKET
+  ═══════════════════════════════ -->
+  <div class="section-header cat-gtm" data-cat="gtm">
+    <span class="section-label">Go-to-Market</span>
+    <span class="section-title">Go-to-Market for Health Innovation</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fw-grid cat-gtm" data-cat="gtm">
+
+    <!-- Clinical Adoption Curve -->
+    <div class="fw-card" onclick="toggleCard(this, 'adoption-detail')" data-name="Clinical Adoption Pathway" data-tags="adoption clinicians champions diffusion change health system">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Market Adoption</div>
+      <div class="fw-name">The Clinical Adoption Pathway</div>
+      <div class="fw-short">Clinical approval ≠ clinical adoption. Why technically superior health technologies still fail to get used.</div>
+      <div class="fw-tags"><span class="tag">Clinicians</span><span class="tag">Workflow</span><span class="tag">Diffusion</span></div>
+    </div>
+    <div class="fw-detail" id="adoption-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The adoption gap</h4>
+          <p>Unlike consumer products, health innovation adoption depends on a complex web of clinician trust, workflow integration, institutional procurement, and patient acceptance — all separate from clinical and regulatory approval. A technology can be TGA-approved, MBS-funded, and clinically superior, and still fail to achieve meaningful uptake.</p>
+        </div>
+        <div class="detail-block">
+          <h4>The key adoption barriers in health</h4>
+          <ul>
+            <li><strong>Workflow disruption:</strong> Does it add steps to an already time-pressured clinical workflow?</li>
+            <li><strong>Clinician trust:</strong> Has it been validated by peers, professional colleges, or guidelines?</li>
+            <li><strong>Liability concerns:</strong> Who is responsible if the technology contributes to an adverse outcome?</li>
+            <li><strong>Institutional procurement:</strong> Hospital purchasing committees, formularies, IT security review</li>
+            <li><strong>Patient trust and digital literacy:</strong> Especially relevant for self-managed digital health tools</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Strategies for adoption</h4>
+          <ol class="steps-list">
+            <li>Identify and cultivate clinical champions early — peer endorsement drives uptake more than marketing</li>
+            <li>Design for minimal workflow disruption — integrate into existing systems (EHR, ordering systems) rather than requiring separate logins/processes</li>
+            <li>Pursue professional college and guideline endorsement where possible</li>
+            <li>Pilot in a small number of high-credibility sites before broad rollout — create reference sites</li>
+            <li>Address liability explicitly in product design and contracts, not as an afterthought</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>The "last mile" problem</h4>
+          <ul>
+            <li>Most health-tech failures happen post-approval, in the adoption phase, not the development phase</li>
+            <li>Budget and resource for adoption support (training, change management, helpdesk) as seriously as you budget for clinical trials</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A clinical decision-support tool for antibiotic prescribing has TGA approval and positive trial results, but after 6 months in 3 pilot hospitals, usage rates are below 15% among eligible clinicians. Diagnose the likely adoption barriers and recommend 3 specific interventions to improve uptake.
+        </div>
+        <textarea class="practice-input" placeholder="Likely adoption barriers (rank by probability):&#10;1. [e.g. workflow disruption] — because...&#10;2. ...&#10;3. ...&#10;&#10;Recommended interventions:&#10;1. ...&#10;2. ...&#10;3. ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'adoption')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-adoption"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Health GTM Channel Strategy -->
+    <div class="fw-card" onclick="toggleCard(this, 'gtmchannel-detail')" data-name="Health GTM Channel Strategy" data-tags="B2B B2C B2B2C channel strategy go to market sales">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Commercial Strategy</div>
+      <div class="fw-name">Health GTM Channel Strategy</div>
+      <div class="fw-short">B2C, B2B, or B2B2C — choosing the right channel determines your entire business model, sales cycle, and capital needs.</div>
+      <div class="fw-tags"><span class="tag">Channels</span><span class="tag">B2B2C</span><span class="tag">Sales Cycle</span></div>
+    </div>
+    <div class="fw-detail" id="gtmchannel-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The three channel models</h4>
+          <ul>
+            <li><strong>B2C (direct to patient/consumer):</strong> Fast to launch, no reimbursement dependency, but requires consumer willingness-to-pay and high marketing spend</li>
+            <li><strong>B2B (direct to institution):</strong> Hospitals, health systems, insurers as customers. Long sales cycles (6–18 months), but larger contract values and stickier relationships</li>
+            <li><strong>B2B2C (institution as intermediary to patient):</strong> Most common in health tech — sell to a hospital/insurer/employer who then provides it to patients. Combines institutional trust with patient-level engagement requirements</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Choosing the right model</h4>
+          <p>The right channel depends on who experiences the value, who controls the budget, and who bears the regulatory/clinical risk. If clinical risk is high, B2B or B2B2C is usually necessary — institutions provide governance and liability infrastructure that direct-to-consumer cannot.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Sales cycle realities in Australian health</h4>
+          <ol class="steps-list">
+            <li>Hospital procurement typically involves clinical governance committees, IT security review, and finance sign-off — budget 6–18 months</li>
+            <li>State health systems often require separate procurement processes per state — a national rollout means multiple sales cycles, not one</li>
+            <li>Private health insurers move faster than public hospitals but require clear cost-offset evidence</li>
+            <li>Primary care (GP clinics) has shorter cycles but lower individual contract value — requires volume</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Capital implications</h4>
+          <ul>
+            <li>B2B2C models require capital runway to survive long institutional sales cycles before revenue materialises</li>
+            <li>Consider hybrid sequencing: B2C or direct-pay revenue to fund operations while pursuing slower B2B/B2B2C deals</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A startup has built a sleep apnoea screening device that uses a smartphone microphone overnight. It's TGA Class I (low risk, screening not diagnostic) and costs $15 to manufacture. Recommend a GTM channel strategy — B2C, B2B, or B2B2C — and justify your choice considering the low clinical risk and low manufacturing cost.
+        </div>
+        <textarea class="practice-input" placeholder="Recommended channel: [B2C/B2B/B2B2C] because...&#10;&#10;Given the low clinical risk classification, this changes the channel calculus by: ...&#10;&#10;Pricing/business model implication: ...&#10;&#10;Risks of this channel choice: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'gtmchannel')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-gtmchannel"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /fw-grid cat-gtm -->
+
+
+  <!-- ═══════════════════════════════
+       SECTION 5: IP & TECH TRANSFER
+  ═══════════════════════════════ -->
+  <div class="section-header cat-ip" data-cat="ip">
+    <span class="section-label">IP & Tech Transfer</span>
+    <span class="section-title">IP Strategy & Technology Transfer</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fw-grid cat-ip" data-cat="ip">
+
+    <!-- IP Strategy -->
+    <div class="fw-card" onclick="toggleCard(this, 'ipstrategy-detail')" data-name="IP Strategy for Health Innovation" data-tags="intellectual property patents freedom to operate licensing">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">IP Strategy</div>
+      <div class="fw-name">IP Strategy for Health Innovation</div>
+      <div class="fw-short">No investor funds a health technology without a defensible IP position. Patents, freedom to operate, and the licensing decision.</div>
+      <div class="fw-tags"><span class="tag">Patents</span><span class="tag">FTO</span><span class="tag">Licensing</span></div>
+    </div>
+    <div class="fw-detail" id="ipstrategy-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>Core IP concepts</h4>
+          <ul>
+            <li><strong>Patent:</strong> Exclusive right to exclude others from making/using/selling the invention (typically 20 years)</li>
+            <li><strong>Freedom to Operate (FTO):</strong> Confirmation that your product doesn't infringe on someone else's existing patents — distinct from having your own patent</li>
+            <li><strong>Trade secret:</strong> Protecting know-how through confidentiality rather than disclosure (useful for processes, algorithms not easily reverse-engineered)</li>
+            <li><strong>Licensing:</strong> Granting another party rights to use your IP, typically for royalties or upfront payment</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>The critical FTO mistake</h4>
+          <p>Founders often assume "we have a patent" means they can freely sell their product. It doesn't. You can hold a valid patent on your specific innovation while still infringing someone else's broader patent in operating your product. FTO analysis is a separate, essential exercise.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Build vs license vs partner decision</h4>
+          <ol class="steps-list">
+            <li><strong>Build (in-house IP):</strong> Maximum control and upside, but requires capital and expertise to develop and defend</li>
+            <li><strong>License in:</strong> Faster path to market using existing IP, but ongoing royalty obligations and less differentiation</li>
+            <li><strong>License out:</strong> Monetise university/research IP without bearing full commercialisation risk and cost</li>
+            <li><strong>Strategic partnership:</strong> Co-development with a larger player, sharing IP and risk</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>For university spin-outs specifically</h4>
+          <ul>
+            <li>Most Australian universities retain background IP — spin-outs typically negotiate an exclusive licence, not outright ownership</li>
+            <li>Tech transfer office (TTO) terms (royalty rates, equity stakes, milestone payments) should be negotiated early — they significantly affect future investability</li>
+            <li>Publication timing must be carefully managed against patent filing — public disclosure before filing can destroy patentability in most jurisdictions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A PhD researcher has developed a novel diagnostic biomarker test at a WA university. They've filed a provisional patent but haven't yet checked freedom to operate. They're approached by a large diagnostics company offering to license the technology. Advise them on the immediate IP priorities before any licensing negotiation, and explain the key risk of skipping FTO analysis.
+        </div>
+        <textarea class="practice-input" placeholder="Immediate IP priorities before negotiating:&#10;1. ...&#10;2. ...&#10;3. ...&#10;&#10;Key risk of skipping FTO: ...&#10;&#10;What I'd want to know about the university's TTO terms before negotiating: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'ipstrategy')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-ipstrategy"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+    <!-- Tech Transfer Process -->
+    <div class="fw-card" onclick="toggleCard(this, 'techtransfer-detail')" data-name="Technology Transfer Process" data-tags="technology transfer university spin-out commercialisation pathway">
+      <span class="fw-arrow">›</span>
+      <div class="fw-type">Commercialisation Process</div>
+      <div class="fw-name">Technology Transfer Process</div>
+      <div class="fw-short">Moving an innovation from a university lab into a commercial entity — the structured pathway and the typical pitfalls.</div>
+      <div class="fw-tags"><span class="tag">University</span><span class="tag">Spin-out</span><span class="tag">TTO</span></div>
+    </div>
+    <div class="fw-detail" id="techtransfer-detail">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h4>The typical process</h4>
+          <ol class="steps-list">
+            <li>Invention disclosure to the university's Tech Transfer Office (TTO)</li>
+            <li>TTO assesses commercial potential and patentability</li>
+            <li>Patent filing (provisional, then full application within 12 months)</li>
+            <li>Commercialisation pathway decision: licence to existing company, or spin out a new company</li>
+            <li>If spin-out: negotiate founder equity, university equity stake, and licence terms</li>
+            <li>Seek translational funding to progress TRL/CRL toward commercial readiness</li>
+          </ol>
+        </div>
+        <div class="detail-block">
+          <h4>Key stakeholders to align</h4>
+          <ul>
+            <li><strong>Inventor(s):</strong> Often academic staff who may stay involved as scientific advisors but not full-time operators</li>
+            <li><strong>University TTO:</strong> Negotiates equity/royalty terms, manages IP filing</li>
+            <li><strong>Incoming CEO/management:</strong> Often brought in externally — academic founders frequently aren't the right operational leaders</li>
+            <li><strong>External investors:</strong> Will scrutinise the IP/equity structure closely before committing capital</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Common friction points</h4>
+          <ul>
+            <li>University equity/royalty demands that are too aggressive for future investors to accept — gets renegotiated, wasting time and goodwill</li>
+            <li>Conflict between academic publication incentives and commercial confidentiality needs</li>
+            <li>Founding academic insisting on CEO role despite lacking commercial experience</li>
+            <li>Underestimating the capital and time needed between disclosure and product readiness</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h4>Australian ecosystem support</h4>
+          <ul>
+            <li>MTPConnect, BioMedTech Horizons, and CSIRO's Innovation Fund all provide translational support</li>
+            <li>State-based programs (e.g. WA's Innovation Booster, NSW Medical Devices Fund) offer early-stage non-dilutive grants</li>
+            <li>University accelerators and incubators (often co-located with TTOs) provide structured commercialisation support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="practice-section">
+        <div class="practice-header"><span class="practice-badge">Practice Mode</span><h4>Apply the framework</h4></div>
+        <div class="practice-scenario">
+          <strong>Scenario:</strong> A senior academic at a WA university has disclosed a promising new drug delivery technology to the TTO. She wants to be CEO of the resulting spin-out, despite having no prior commercial experience. As an advisor to the TTO, outline how you'd approach this conversation — balancing respect for the inventor with the commercial realities investors will expect.
+        </div>
+        <textarea class="practice-input" placeholder="Key points I'd raise with the academic founder:&#10;1. ...&#10;2. ...&#10;3. ...&#10;&#10;Proposed alternative role for her in the company: ...&#10;&#10;How I'd frame this to preserve the relationship and her motivation: ..."></textarea>
+        <button class="practice-btn" onclick="getAIFeedback(this, 'techtransfer')">Get AI Feedback ›</button>
+        <div class="ai-response" id="ai-resp-techtransfer"><div class="ai-response-label">AI Coach Feedback</div><div class="ai-resp-content"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /fw-grid cat-ip -->
+
+  <div class="section-divider"></div>
+
+</div><!-- /main -->
+
+<footer>
+  <p>A living notebook. Last updated June 2026 · Part of a series alongside the Consulting Playbook and Impact Investing Playbook · <a href="https://github.com/bwtwong" target="_blank">GitHub ↗</a></p>
+  <p style="margin-top:0.5rem; font-size:0.72rem; opacity:0.6">AI practice feedback powered by Claude (Anthropic) · Frameworks reflect the Australian health system (TGA, MBS, PBS, PBAC, MSAC) as of mid-2026 · This is a practitioner's notebook, not regulatory or legal advice — always verify current requirements with TGA, the Department of Health, and a qualified regulatory consultant</p>
+</footer>
+
+<script>
+function toggleCard(card, detailId) {
+  const detail = document.getElementById(detailId);
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.fw-card.open').forEach(c => {
+    c.classList.remove('open');
+    c.setAttribute('aria-expanded', 'false');
+  });
+  document.querySelectorAll('.fw-detail.open').forEach(d => d.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    card.setAttribute('aria-expanded', 'true');
+    detail.classList.add('open');
+    setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fw-card').forEach(card => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-expanded', 'false');
+    const nameEl = card.querySelector('.fw-name');
+    if (nameEl) card.setAttribute('aria-label', `${nameEl.textContent.trim()} — expand details`);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+});
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sections = document.querySelectorAll('.section-header, .fw-grid');
+  sections.forEach(el => {
+    if (cat === 'all') {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.toggle('hidden', el.dataset.cat !== cat);
+    }
+  });
+  document.querySelectorAll('.fw-card.open').forEach(c => c.classList.remove('open'));
+  document.querySelectorAll('.fw-detail.open').forEach(d => d.classList.remove('open'));
+}
+
+function searchFrameworks(query) {
+  const q = query.toLowerCase().trim();
+  if (q) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section-header, .fw-grid').forEach(el => el.classList.remove('hidden'));
+  }
+  document.querySelectorAll('.fw-card').forEach(card => {
+    if (!q) { card.classList.remove('hidden'); return; }
+    const name = (card.dataset.name || '').toLowerCase();
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = (card.innerText || '').toLowerCase();
+    card.classList.toggle('hidden', !name.includes(q) && !tags.includes(q) && !text.includes(q));
+  });
+}
+
+const frameworkContexts = {
+  trl: "You are a research commercialisation advisor coaching a founder on Technology Readiness Levels for a sepsis-detection wearable. Assess: (1) Is the TRL assignment accurate given the description (validated in lab vs relevant environment)? (2) Is their justification logically sound and not overclaiming? (3) Is the evidence needed to progress correctly identified — should specifically require testing in a real/relevant hospital environment, not just more lab work? Under 280 words.",
+  crl: "You are a health-tech investment advisor coaching a founder on Clinical Readiness Levels for a digital anxiety therapeutics app. Assess: (1) Is the CRL assignment accurate — a 40-patient pilot without randomisation/control sits around CRL 5? (2) Is the path to CRL 7 correctly identified as requiring a randomised controlled trial? (3) Is the investor hesitation reasoning sound — e.g. pilot studies often have selection bias, no control group, small sample? Under 280 words.",
+  vod: "You are a translational funding advisor coaching a founder on bridging the Valley of Death for a wound care dressing spin-out. Assess: (1) Are the three funding sources genuinely appropriate for this CRL 4 stage and Australian context (e.g. MRFF Translational grants, BioMedTech Horizons, state innovation funds, or strategic corporate partnership)? (2) Is the sequencing logical — does it build evidence progressively? (3) Is the strategy realistic given typical grant sizes and timelines? Under 280 words.",
+  stagegate: "You are a MedTech portfolio manager reviewing Stage-Gate criteria for a diagnostic device moving from Business Case to Development. Assess: (1) Are all four criteria (technical, clinical, market, financial) genuinely specific and measurable, not vague? (2) Is the go/kill action proportionate and clear? (3) Would these criteria actually prevent a bad project from proceeding, or are they too easy to satisfy? Under 280 words.",
+  tga: "You are a TGA regulatory affairs consultant reviewing a classification and pathway analysis for an AI melanoma-screening SaMD tool. Assess: (1) Is the risk classification reasoning sound — decision-support tools for referral (not diagnosis) are typically lower risk than autonomous diagnostic claims? (2) Are the ARTG steps accurate and complete? (3) Is the acceleration strategy (e.g. leveraging existing FDA/CE clearance, pre-submission meeting) realistic and valuable? Under 280 words.",
+  hta: "You are a health economist reviewing an ICER calculation and PBAC submission strategy for a new diabetes medication. Assess: (1) Is the ICER calculation arithmetically correct ($3,000 ÷ 0.15 QALYs = $20,000/QALY)? (2) Is the favourability assessment reasonable given this falls well below typical scrutiny thresholds? (3) Is the suggestion for strengthening evidence (e.g. real-world data, subgroup analysis, budget impact modelling) appropriate? Under 280 words.",
+  reimburse: "You are a market access strategist reviewing a reimbursement pathway map for a post-surgical cardiac remote monitoring platform. Assess: (1) Are the pathway options realistic for the Australian system — is MSAC/new MBS item correctly identified as slow but most durable, with state hospital procurement or private insurer partnership as faster interim options? (2) Is the most likely primary pathway well-justified? (3) Is the hybrid strategy rationale sound given typical HTA timelines? Under 280 words.",
+  heor: "You are a health economist reviewing an HEOR strategy for a digital mental health platform seeking PBS/MBS funding. Assess: (1) Are the three evidence pillars (clinical, economic, real-world) appropriately scoped for this technology? (2) Is the proposed comparator (standard GP-managed care) appropriate? (3) Is the QALY modelling challenge for mental health correctly identified — e.g. difficulty quantifying quality-of-life improvements, shorter-term vs lifetime modelling, placebo effect in mental health trials? Under 280 words.",
+  evidence: "You are a clinical evidence strategist reviewing an evidence design decision for an AI emergency department triage tool. Assess: (1) Is the recommendation appropriately matched to the claim type — decision support tools generally require a lower evidence bar than autonomous diagnostic claims, but still need rigour given the ED safety-critical context? (2) Is the evidence sequencing logical (e.g. retrospective cohort first to build signal, then prospective validation)? (3) Is the reasoning about regulatory/reimbursement implications sound? Under 280 words.",
+  adoption: "You are a clinical adoption specialist reviewing a diagnosis and intervention plan for low uptake (15%) of an antibiotic prescribing decision-support tool. Assess: (1) Are the ranked barriers plausible and specific to this clinical context — workflow disruption and liability concerns are common in antibiotic stewardship tools? (2) Are the three interventions specific and actionable, not generic 'more training' suggestions? (3) Does the plan address clinical champion identification, which is usually the highest-leverage intervention? Under 280 words.",
+  gtmchannel: "You are a health-tech commercial strategist reviewing a GTM channel recommendation for a low-cost, low-risk smartphone-based sleep apnoea screening device. Assess: (1) Is the channel recommendation (likely B2C or B2B2C given Class I low risk and low cost) well-justified? (2) Does the reasoning correctly connect low clinical risk to channel flexibility (lower liability burden enables direct-to-consumer)? (3) Are the pricing and risk considerations realistic? Under 280 words.",
+  ipstrategy: "You are an IP strategy advisor coaching a PhD researcher on a diagnostic biomarker licensing negotiation. Assess: (1) Is Freedom to Operate analysis correctly prioritised before any licensing negotiation — a critical and often-missed step? (2) Are the other IP priorities (full patent filing strategy, understanding TTO terms) appropriately sequenced? (3) Is the FTO risk explanation accurate — specifically that holding a patent doesn't protect against infringing someone else's broader patent? Under 280 words.",
+  techtransfer: "You are a technology transfer office advisor coaching on a sensitive conversation with an academic founder who wants to be CEO without commercial experience. Assess: (1) Is the approach respectful but realistic about investor expectations for experienced commercial leadership? (2) Is an alternative role (e.g. Chief Scientific Officer, scientific advisory board) proposed constructively? (3) Does the framing preserve the relationship while being honest about commercial realities? This is a sensitive people-management scenario — assess emotional intelligence as well as commercial logic. Under 280 words."
+};
+
+async function getAIFeedback(btn, frameworkId) {
+  const section = btn.closest('.practice-section');
+  const textarea = section.querySelector('.practice-input');
+  const responseDiv = section.querySelector('.ai-response');
+  const contentDiv = section.querySelector('.ai-resp-content');
+
+  const userAnswer = textarea.value.trim();
+  if (!userAnswer || userAnswer.length < 20) {
+    textarea.style.borderColor = '#E07A7A';
+    setTimeout(() => textarea.style.borderColor = '', 2000);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Analysing...';
+  responseDiv.classList.remove('visible');
+
+  try {
+    const systemPrompt = frameworkContexts[frameworkId] || "You are a health innovation coach giving feedback on a practitioner's framework application. Be specific, encouraging, and rigorous. Under 280 words.";
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: "user", content: `Here is my response to the practice scenario:\n\n${userAnswer}` }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.[0]?.text || "Unable to generate feedback. Please try again.";
+
+    contentDiv.innerHTML = text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>')
+      .replace(/^/, '<p>')
+      .replace(/$/, '</p>');
+
+    responseDiv.classList.add('visible');
+  } catch (err) {
+    contentDiv.innerHTML = '<p style="color:#E07A7A">Could not connect to AI feedback. Please check your connection and try again.</p>';
+    responseDiv.classList.add('visible');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Get AI Feedback ›';
+  }
+}
+</script>
+</body>
+</html>
